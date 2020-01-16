@@ -9,6 +9,18 @@ repositories {
 }
 
 dependencies {
+
+    //needed for testing
     testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    //needed for servlets and expose services
     compile group: 'org.jboss.resteasy', name: 'jaxrs-api', version: '3.0.12.Final'
+    compile group: 'javax.inject', name: 'javax.inject', version: '1'
+
+    //needed for ORM
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.10.Final'
+
+    //needed for DB connection
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.9'
+
 }

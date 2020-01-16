@@ -5,10 +5,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 @Path("/voters")
-public class VotersResorce {
+public class AssociateResorce {
 
     @GET
-    public Response getAllVoters(){
+    public Response getAllAssociates(){
         return Response.ok().entity("\"teste\" : \"ok\"").build();
     }
 }
