@@ -32,4 +32,9 @@ public class AssociateDao {
         query.setParameter("id", id);
         return (AssociateEntity) query.getSingleResult();
     }
+
+    @Transactional
+    public void insertAssociate(AssociateEntity associate) {
+       entityManager.persist(associate);
+    }
 }

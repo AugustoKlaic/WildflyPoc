@@ -22,4 +22,10 @@ public class AssociateService {
             return Optional.empty();
         }
     }
+
+    public void insertAssociate(AssociateEntity associateEntity){
+        if(associateEntity != null && associateEntity.getCpf() != null && associateEntity.getName() != null && associateEntity.getId() != null){
+            associateDao.insertAssociate(associateEntity);
+        }
+    }
 }
