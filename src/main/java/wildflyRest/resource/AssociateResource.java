@@ -1,5 +1,7 @@
 package wildflyRest.resource;
 
+import wildflyRest.converter.AssociateConverter;
+import wildflyRest.dto.input.AssociateInput;
 import wildflyRest.entity.AssociateEntity;
 import wildflyRest.service.AssociateService;
 
@@ -43,7 +45,14 @@ public class AssociateResource {
 
     @POST
     @Path("/new-associate")
-    public Response insertAssociate() {
-        return Response.status(Response.Status.CREATED).build();
+    public Response insertAssociate(final AssociateInput associateInput) {
+
+        if (associateInput != null && associateInput.getAsociateCpf() != null && associateInput.getAssociateName() != null) {
+            associateService.insertAssociate(AssociateConverter.convertInputToEntity(associateInput));
+            return Response.status(Response.Status.CREATED).build();
+        } else {
+            return Response.status(Response.Status.CONFLICT)
+                    .entity("{\"code\" : 409, \"message\" : \"Could not create this associate, missing information.\"}").build();
+        }
     }
 }

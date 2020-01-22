@@ -34,7 +34,8 @@ public class AssociateDao {
     }
 
     @Transactional
-    public void insertAssociate(AssociateEntity associate) {
+    public UUID insertAssociate(AssociateEntity associate) {
        entityManager.persist(associate);
+       return associate.getId();
     }
 }
