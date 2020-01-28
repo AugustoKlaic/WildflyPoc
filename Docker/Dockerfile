@@ -21,14 +21,15 @@ RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-
 #get postgres
 RUN apt-get install -y postgresql postgresql-contrib
 
-RUN su - postgres
-
 ##set to root user to start postgres and create your user
 USER postgres
 
-##start postgres
-RUN /etc/init.d/postgresql start
+#start postgres, create the user, database and set the password
+RUN    service postgresql start &&\
+    psql --command "CREATE USER voterguy WITH SUPERUSER PASSWORD 'v0t3r';" &&\
+    createdb -O voterguy voter-app-db
 
+#configure the postgres to accept remote connections
 RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/10/main/pg_hba.conf
 
 ## And add ``listen_addresses`` to ``/etc/postgresql/9.3/main/postgresql.conf``
