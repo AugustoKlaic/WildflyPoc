@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Path("/voters")
+@Path("/associates")
 @Produces(MediaType.APPLICATION_JSON)
 public class AssociateResource {
 
@@ -44,7 +44,7 @@ public class AssociateResource {
     }
 
     @POST
-    @Path("/new-associate")
+    @Path("/new")
     public Response insertAssociate(final AssociateInput associateInput) {
 
         if (associateInput != null && associateInput.getAsociateCpf() != null && associateInput.getAssociateName() != null) {
