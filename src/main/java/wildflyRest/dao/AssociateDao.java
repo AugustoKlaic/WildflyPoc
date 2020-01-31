@@ -4,11 +4,12 @@ import wildflyRest.entity.AssociateEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
+
+import static javax.persistence.Persistence.createEntityManagerFactory;
 
 public class AssociateDao {
 
@@ -16,7 +17,7 @@ public class AssociateDao {
     private EntityManager entityManager;
 
     public AssociateDao() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("Wildfly-POC");
+        entityManagerFactory = createEntityManagerFactory("Wildfly-POC");
         entityManager = entityManagerFactory.createEntityManager();
     }
 
@@ -35,7 +36,7 @@ public class AssociateDao {
 
     @Transactional
     public UUID insertAssociate(AssociateEntity associate) {
-       entityManager.persist(associate);
-       return associate.getId();
+        entityManager.persist(associate);
+        return associate.getId();
     }
 }
