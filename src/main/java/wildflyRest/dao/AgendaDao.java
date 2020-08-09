@@ -33,7 +33,7 @@ public class AgendaDao {
     }
 
     @Transactional
-    public UUID insertAssociate(AgendaEntity agenda) {
+    public UUID insertAgenda(AgendaEntity agenda) {
         entityManager.persist(agenda);
         return agenda.getId();
     }
