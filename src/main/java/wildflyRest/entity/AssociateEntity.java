@@ -4,18 +4,18 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "associates")
+@Table(name = "associate")
 public class AssociateEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "associates_id")
+    @Column(name = "associate_id")
     private UUID id;
 
-    @Column(name = "associates_cpf", unique = true, nullable = false)
+    @Column(name = "associate_cpf", unique = true, nullable = false)
     private String cpf;
 
-    @Column(name = "associates_name", nullable = false)
+    @Column(name = "associate_name", nullable = false)
     private String name;
 
     public AssociateEntity() {
