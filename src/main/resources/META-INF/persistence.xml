@@ -6,6 +6,7 @@
     <persistence-unit name="Wildfly-POC">
 
         <class>wildflyRest.entity.AssociateEntity</class>
+        <class>wildflyRest.entity.AgendaEntity</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> <!-- DB Driver -->
