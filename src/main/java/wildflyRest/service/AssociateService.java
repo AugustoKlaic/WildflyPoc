@@ -3,6 +3,7 @@ package wildflyRest.service;
 import wildflyRest.dao.AssociateDao;
 import wildflyRest.entity.AssociateEntity;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -23,6 +24,7 @@ public class AssociateService {
         }
     }
 
+    @Transactional
     public void insertAssociate(AssociateEntity associateEntity){
         if(associateEntity != null && associateEntity.getCpf() != null && associateEntity.getName() != null && associateEntity.getId() != null){
             associateDao.insertAssociate(associateEntity);
