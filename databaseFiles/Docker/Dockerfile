@@ -29,7 +29,9 @@ RUN service postgresql start &&\
     psql --command "CREATE USER voterguy WITH SUPERUSER PASSWORD 'v0t3r';" &&\
     createdb -O voterguy voter-app-db &&\
     psql -d voter-app-db --command "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";" &&\
-    psql -d voter-app-db -f "dbFiles/associates.sql";
+    psql -d voter-app-db -f "dbFiles/associate.sql";
+    psql -d voter-app-db -f "dbFiles/agenda.sql";
+    psql -d voter-app-db -f "dbFiles/vote.sql";
 
 #configure the postgres to accept remote connections
 RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/10/main/pg_hba.conf
