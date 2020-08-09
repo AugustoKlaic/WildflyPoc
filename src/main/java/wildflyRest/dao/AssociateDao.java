@@ -21,13 +21,11 @@ public class AssociateDao {
         entityManager = entityManagerFactory.createEntityManager();
     }
 
-    @Transactional
     public List<AssociateEntity> getAllAssociates() {
         Query query = entityManager.createQuery("SELECT a FROM AssociateEntity a");
         return (List<AssociateEntity>) query.getResultList();
     }
 
-    @Transactional
     public AssociateEntity getAssociate(UUID id) {
         Query query = entityManager.createQuery("SELECT a from AssociateEntity a WHERE a.id = :id");
         query.setParameter("id", id);
