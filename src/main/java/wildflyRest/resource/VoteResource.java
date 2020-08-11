@@ -1,24 +1,30 @@
 package wildflyRest.resource;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import wildflyRest.converter.VoteConverter;
+import wildflyRest.dto.input.VoteInput;
+import wildflyRest.service.VoteService;
+
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.UUID;
 
 @Path("/votes")
 @Produces(MediaType.APPLICATION_JSON)
 public class VoteResource {
 
-    @GET
-    public Response getVoteResults() {
+    private VoteService voteService = new VoteService();
 
+    @GET
+    @Path("{id}")
+    public Response getVoteResults(@PathParam("id") String id) {
+        return Response.status(Response.Status.OK).entity(voteService.getResults(UUID.fromString(id))).build();
     }
 
     @POST
-    public Response vote() {
-
+    public Response vote(final VoteInput voteInput) {
+        voteService.vote(VoteConverter.convertToEntity(voteInput));
+        return Response.status(Response.Status.OK).build();
     }
 
 }
