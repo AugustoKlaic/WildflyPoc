@@ -15,6 +15,6 @@ public class VoteService {
     }
 
     public VoteResultOutput getResults(UUID agendaId) {
-        final VoteResultOutput voteResult = new VoteResultOutput();
+        return voteDao.votingResult(agendaId);
     }
 }
