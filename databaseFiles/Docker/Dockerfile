@@ -35,20 +35,20 @@ RUN service postgresql start &&\
     psql --command "CREATE USER voterguy WITH SUPERUSER PASSWORD 'v0t3r';" &&\
     createdb -O voterguy voter-app-db &&\
     psql -d voter-app-db --command "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";" &&\
-    psql -d voter-app-db -f "dbFiles/associate.sql;" &&\
-    psql -d voter-app-db -f "dbFiles/agenda.sql;" &&\
-    psql -d voter-app-db -f "dbFiles/vote.sql;";
+    psql -d voter-app-db -f "dbFiles/associate.sql" &&\
+    psql -d voter-app-db -f "dbFiles/agenda.sql" &&\
+    psql -d voter-app-db -f "dbFiles/vote.sql";
 
 #configure the postgres to accept remote connections
-RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/10/main/pg_hba.conf
+RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/12/main/pg_hba.conf
 
-## And add ``listen_addresses`` to ``/etc/postgresql/9.3/main/postgresql.conf``
-RUN echo "listen_addresses='*'" >> /etc/postgresql/10/main/postgresql.conf
+# And add ``listen_addresses`` to ``/etc/postgresql/12/main/postgresql.conf``
+RUN echo "listen_addresses='*'" >> /etc/postgresql/12/main/postgresql.conf
 
-## Expose the PostgreSQL port
+# Expose the PostgreSQL port
 EXPOSE 5432
 
-## Add VOLUMEs to allow backup of config, logs and databases
+# Add VOLUMEs to allow backup of config, logs and databases
 VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]
 
-CMD ["/usr/lib/postgresql/10/bin/postgres", "-D", "/var/lib/postgresql/10/main", "-c", "config_file=/etc/postgresql/10/main/postgresql.conf"]
+CMD ["/usr/lib/postgresql/12/bin/postgres", "-D", "/var/lib/postgresql/12/main", "-c", "config_file=/etc/postgresql/12/main/postgresql.conf"]
