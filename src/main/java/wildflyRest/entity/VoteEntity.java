@@ -1,15 +1,20 @@
 package wildflyRest.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
 @Table(name = "vote")
-public class VoteEntity {
+public class VoteEntity implements Serializable {
 
+    private static final long serialVersionUID = 3984905683591704185L;
+
+    @Id
     @Column(name = "vote_agenda")
     private UUID voteAgenda;
 
+    @Id
     @Column(name = "vote_associate")
     private UUID voteAssociate;
 
