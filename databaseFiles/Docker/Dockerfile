@@ -12,11 +12,17 @@ RUN apt-get install -y gnupg2
 RUN mkdir dbFiles/
 
 #copy files from the system to the container
-COPY associates.sql dbFiles/
+COPY associate.sql dbFiles/
+COPY agenda.sql dbFiles/
+COPY vote.sql dbFiles/
 
 #get all license key to get postgres
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+
+#Define timezone to not need to set it manually
+ENV TZ=America/Brazil
+RUN apt-get install -y tzdata
 
 #get postgres
 RUN apt-get install -y postgresql postgresql-contrib
@@ -29,9 +35,9 @@ RUN service postgresql start &&\
     psql --command "CREATE USER voterguy WITH SUPERUSER PASSWORD 'v0t3r';" &&\
     createdb -O voterguy voter-app-db &&\
     psql -d voter-app-db --command "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";" &&\
-    psql -d voter-app-db -f "dbFiles/associate.sql";
-    psql -d voter-app-db -f "dbFiles/agenda.sql";
-    psql -d voter-app-db -f "dbFiles/vote.sql";
+    psql -d voter-app-db -f "dbFiles/associate.sql;" &&\
+    psql -d voter-app-db -f "dbFiles/agenda.sql;" &&\
+    psql -d voter-app-db -f "dbFiles/vote.sql;";
 
 #configure the postgres to accept remote connections
 RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/10/main/pg_hba.conf
