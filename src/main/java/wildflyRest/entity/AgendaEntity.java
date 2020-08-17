@@ -17,7 +17,7 @@ public class AgendaEntity {
     private String name;
 
     @Column(name = "agenda_duration", nullable = false)
-    private Duration duration;
+    private Integer duration;
 
     public AgendaEntity() {
     }
@@ -38,11 +38,11 @@ public class AgendaEntity {
         this.name = name;
     }
 
-    public Duration getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(Duration duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 }

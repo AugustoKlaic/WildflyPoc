@@ -5,9 +5,9 @@ import java.time.Duration;
 public class AgendaInput {
 
     private String name;
-    private Duration duration;
+    private Integer duration;
 
-    public AgendaInput(String name, Duration duration) {
+    public AgendaInput(String name, Integer duration) {
         this();
         this.name = name;
         this.duration = duration;
@@ -24,11 +24,11 @@ public class AgendaInput {
         this.name = name;
     }
 
-    public Duration getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(Duration duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 }
