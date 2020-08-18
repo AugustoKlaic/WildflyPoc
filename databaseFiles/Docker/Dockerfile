@@ -14,6 +14,7 @@ RUN mkdir dbFiles/
 #copy files from the system to the container
 COPY associate.sql dbFiles/
 COPY agenda.sql dbFiles/
+COPY session.sql dbFiles/
 COPY vote.sql dbFiles/
 
 #get all license key to get postgres
@@ -37,6 +38,7 @@ RUN service postgresql start &&\
     psql -d voter-app-db --command "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";" &&\
     psql -d voter-app-db -f "dbFiles/associate.sql" &&\
     psql -d voter-app-db -f "dbFiles/agenda.sql" &&\
+    psql -d voter-app-db -f "dbFiles/session.sql" &&\
     psql -d voter-app-db -f "dbFiles/vote.sql";
 
 #configure the postgres to accept remote connections
