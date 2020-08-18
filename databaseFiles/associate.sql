@@ -1,7 +1,10 @@
 create table associate(
-    associate_id uuid primary key,
-    associate_cpf varchar(12) unique not null,
-    associate_name varchar(100) not null
+    associate_id uuid not null,
+    associate_cpf varchar(12) not null,
+    associate_name varchar(100) not null,
+
+    primary key (associate_id),
+    constraint unique_associate unique (associate_cpf)
 );
 
 insert into associate (associate_id, associate_cpf, associate_name)
