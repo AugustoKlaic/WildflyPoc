@@ -21,6 +21,9 @@ public class VoteEntity implements Serializable {
     @Column(name = "vote_value")
     private Boolean voteValue;
 
+    @Column(name = "vote_session")
+    private UUID voteSession;
+
     public VoteEntity() {
     }
 
@@ -46,5 +49,13 @@ public class VoteEntity implements Serializable {
 
     public void setVoteValue(Boolean voteValue) {
         this.voteValue = voteValue;
+    }
+
+    public UUID getVoteSession() {
+        return voteSession;
+    }
+
+    public void setVoteSession(UUID voteSession) {
+        this.voteSession = voteSession;
     }
 }
