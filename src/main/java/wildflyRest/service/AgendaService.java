@@ -26,7 +26,7 @@ public class AgendaService {
 
     @Transactional
     public void insertAgenda(AgendaEntity agendaEntity) {
-        if (agendaEntity != null && agendaEntity.getName() != null && agendaEntity.getId() != null) {
+        if (agendaEntity != null && agendaEntity.getName() != null) {
             agendaDao.insertAgenda(agendaEntity);
         }
     }

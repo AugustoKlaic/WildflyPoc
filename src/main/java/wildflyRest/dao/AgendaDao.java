@@ -4,6 +4,7 @@ import wildflyRest.entity.AgendaEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -14,6 +15,8 @@ import static javax.persistence.Persistence.createEntityManagerFactory;
 public class AgendaDao {
 
     private EntityManagerFactory entityManagerFactory;
+
+    @PersistenceContext
     private EntityManager entityManager;
 
     public AgendaDao() {
@@ -34,7 +37,9 @@ public class AgendaDao {
 
     @Transactional
     public UUID insertAgenda(AgendaEntity agenda) {
+        entityManager.getTransaction().begin();
         entityManager.persist(agenda);
+        entityManager.getTransaction().commit();
         return agenda.getId();
     }
 }

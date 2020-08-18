@@ -1,16 +1,13 @@
 package wildflyRest.dto.input;
 
-import java.time.Duration;
 
 public class AgendaInput {
 
     private String name;
-    private Integer duration;
 
-    public AgendaInput(String name, Integer duration) {
+    public AgendaInput(String name) {
         this();
         this.name = name;
-        this.duration = duration;
     }
 
     public AgendaInput() {
@@ -24,11 +21,4 @@ public class AgendaInput {
         this.name = name;
     }
 
-    public Integer getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Integer duration) {
-        this.duration = duration;
-    }
 }
