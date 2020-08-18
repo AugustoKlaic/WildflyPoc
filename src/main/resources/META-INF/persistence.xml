@@ -8,6 +8,7 @@
         <class>wildflyRest.entity.AssociateEntity</class>
         <class>wildflyRest.entity.AgendaEntity</class>
         <class>wildflyRest.entity.VoteEntity</class>
+        <class>wildflyRest.entity.SessionEntity</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> <!-- DB Driver -->
