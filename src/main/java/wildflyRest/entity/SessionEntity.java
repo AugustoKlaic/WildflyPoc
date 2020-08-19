@@ -19,7 +19,7 @@ public class SessionEntity {
     @Column(name = "session_duration")
     private Integer sessionDuration;
 
-    @Column(name = "session_create_time")
+    @Column(name = "session_creation_time")
     private LocalDateTime sessionCreateTime;
 
     public SessionEntity() {
