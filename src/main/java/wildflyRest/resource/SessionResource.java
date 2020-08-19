@@ -19,7 +19,7 @@ public class SessionResource {
     @POST
     @Path("/new")
     public Response createSession(SessionInput session) {
-        if (session.getSessionAgenda() != null && session.getSessionCreateTime() != null && session.getSessionDuration() != null) {
+        if (session.getSessionAgenda() != null && session.getSessionCreateTime() != null) {
             sessionService.insertSession(SessionConverter.convertInputToEntity(session));
             return Response.status(Response.Status.CREATED).build();
         } else {

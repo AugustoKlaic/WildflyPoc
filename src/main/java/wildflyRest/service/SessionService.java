@@ -11,7 +11,7 @@ public class SessionService {
 
     @Transactional
     public void insertSession(SessionEntity session) {
-        if (session.getSessionAgenda() != null && session.getSessionCreateTime() != null && session.getSessionDuration() != null) {
+        if (session.getSessionAgenda() != null && session.getSessionCreateTime() != null) {
             sessionDao.insertSession(session);
         }
     }
