@@ -1,11 +1,15 @@
 package wildflyRest.entity;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
 @Table(name = "session")
+@DynamicInsert
 public class SessionEntity {
 
     @Id
@@ -17,6 +21,7 @@ public class SessionEntity {
     private UUID sessionAgenda;
 
     @Column(name = "session_duration")
+    @ColumnDefault("1")
     private Integer sessionDuration;
 
     @Column(name = "session_creation_time")
