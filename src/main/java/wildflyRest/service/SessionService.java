@@ -22,7 +22,7 @@ public class SessionService {
         return sessionDao.getSession(sessionId);
     }
 
-    public Boolean sessionClosed(UUID sessionId) {
+    public Boolean isSessionClosed(UUID sessionId) {
         final SessionEntity session = getSession(sessionId);
         final LocalDateTime startTime = session.getSessionCreateTime();
 
