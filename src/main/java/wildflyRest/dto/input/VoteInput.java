@@ -7,12 +7,14 @@ public class VoteInput {
     private UUID associateId;
     private UUID agendaId;
     private Boolean vote;
+    private UUID sessionId;
 
-    public VoteInput(UUID associateId, UUID agendaId, Boolean vote) {
+    public VoteInput(UUID associateId, UUID agendaId, Boolean vote, UUID sessionId) {
         this();
         this.associateId = associateId;
         this.agendaId = agendaId;
         this.vote = vote;
+        this.sessionId = sessionId;
     }
 
     public VoteInput() {
@@ -40,5 +42,13 @@ public class VoteInput {
 
     public void setVote(Boolean vote) {
         this.vote = vote;
+    }
+
+    public UUID getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(UUID sessionId) {
+        this.sessionId = sessionId;
     }
 }

@@ -2,6 +2,8 @@ package wildflyRest.resource;
 
 import wildflyRest.converter.VoteConverter;
 import wildflyRest.dto.input.VoteInput;
+import wildflyRest.entity.SessionEntity;
+import wildflyRest.service.SessionService;
 import wildflyRest.service.VoteService;
 
 import javax.ws.rs.*;
@@ -13,7 +15,8 @@ import java.util.UUID;
 @Produces(MediaType.APPLICATION_JSON)
 public class VoteResource {
 
-    private VoteService voteService = new VoteService();
+    private final VoteService voteService = new VoteService();
+    private final SessionService sessionService = new SessionService();
 
     @GET
     @Path("{id}")
@@ -23,8 +26,12 @@ public class VoteResource {
 
     @POST
     public Response vote(final VoteInput voteInput) {
-        voteService.vote(VoteConverter.convertToEntity(voteInput));
-        return Response.status(Response.Status.OK).build();
+        if(sessionService.sessionClosed(voteInput.getSessionId())){
+            return Response.status(Response.Status.UNAUTHORIZED).entity("{\"code\" : 401, \"message\" : \"Voting Session already closed.\"}").build();
+        } else {
+            voteService.vote(VoteConverter.convertToEntity(voteInput));
+            return Response.status(Response.Status.OK).build();
+        }
     }
 
 }
