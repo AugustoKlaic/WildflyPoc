@@ -26,7 +26,7 @@ public class SessionService {
         final SessionEntity session = getSession(sessionId);
         final LocalDateTime startTime = session.getSessionCreateTime();
 
-        if(LocalDateTime.now().isAfter(startTime.plusMinutes(session.getSessionDuration()))){
+        if (LocalDateTime.now().isAfter(startTime.plusMinutes(session.getSessionDuration()))) {
             return true;
         } else {
             return false;

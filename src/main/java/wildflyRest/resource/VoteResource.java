@@ -2,7 +2,6 @@ package wildflyRest.resource;
 
 import wildflyRest.converter.VoteConverter;
 import wildflyRest.dto.input.VoteInput;
-import wildflyRest.entity.SessionEntity;
 import wildflyRest.service.SessionService;
 import wildflyRest.service.VoteService;
 
@@ -26,7 +25,7 @@ public class VoteResource {
 
     @POST
     public Response vote(final VoteInput voteInput) {
-        if(sessionService.sessionClosed(voteInput.getSessionId())){
+        if (sessionService.sessionClosed(voteInput.getSessionId())) {
             return Response.status(Response.Status.UNAUTHORIZED).entity("{\"code\" : 401, \"message\" : \"Voting Session already closed.\"}").build();
         } else {
             voteService.vote(VoteConverter.convertToEntity(voteInput));
