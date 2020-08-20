@@ -24,7 +24,9 @@ public class VoteDao {
 
     @Transactional
     public void vote(VoteEntity vote) {
+        entityManager.getTransaction().begin();
         entityManager.persist(vote);
+        entityManager.getTransaction().commit();
     }
 
     public VoteResultOutput votingResult(UUID agendaId) {

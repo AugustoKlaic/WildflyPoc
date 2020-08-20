@@ -14,6 +14,7 @@ public class VoteConverter {
         voteEntity.setVoteAgenda(voteInput.getAgendaId());
         voteEntity.setVoteAssociate(voteInput.getAssociateId());
         voteEntity.setVoteValue(voteInput.getVote());
+        voteEntity.setVoteSession(voteInput.getSessionId());
 
         return voteEntity;
     }

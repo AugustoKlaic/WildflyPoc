@@ -24,6 +24,7 @@ public class VoteResource {
     }
 
     @POST
+    @Path("/vote")
     public Response vote(final VoteInput voteInput) {
         if (sessionService.sessionClosed(voteInput.getSessionId())) {
             return Response.status(Response.Status.UNAUTHORIZED).entity("{\"code\" : 401, \"message\" : \"Voting Session already closed.\"}").build();
