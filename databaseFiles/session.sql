@@ -1,7 +1,7 @@
 create table session(
     session_id uuid not null,
     session_agenda uuid not null,
-    session_duration numeric not null default 1,
+    session_duration integer not null default 1,
     session_creation_time timestamp not null,
 
     primary key (session_id),

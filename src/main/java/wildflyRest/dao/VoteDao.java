@@ -30,13 +30,16 @@ public class VoteDao {
     }
 
     public VoteResultOutput votingResult(UUID agendaId) {
-        Query query = entityManager.createNativeQuery("SELECT COUNT(v.vote_value) FILTER(WHERE v.vote_value = true) as yes," +
-                " COUNT(v.vote_value) FILTER(WHERE v.vote_value = false) as no," +
-                " COUNT(v.vote_value) as total" +
-                " FROM vote v" +
-                " WHERE v.vote_agenda = ?1 ");
+        Query query = entityManager.createQuery(
+                "SELECT " +
+                        "new wildflyRest.dto.output.VoteResultOutput(" +
+                        "SUM(case when v.voteValue = true then 1 else 0 end) as yes, " +
+                        "SUM(case when v.voteValue = false then 1 else 0 end) as no, " +
+                        "COUNT(v.voteValue) as total)" +
+                        "FROM VoteEntity v " +
+                        "WHERE v.voteAgenda = :agendaId ");
 
-        query.setParameter(1, agendaId);
+        query.setParameter("agendaId", agendaId);
         return (VoteResultOutput) query.getSingleResult();
     }
 }
