@@ -30,13 +30,13 @@ public class VoteDao {
     }
 
     public VoteResultOutput votingResult(UUID agendaId) {
-        Query query = entityManager.createQuery("SELECT COUNT(v.voteValue) FILTER(WHERE voteValue = true) as yes," +
-                " COUNT(v.voteValue) FILTER(WHERE voteValue = false) as no," +
-                " COUNT(v.voteValue) as total" +
-                " FROM VoteEntity v" +
-                " WHERE v.voteAgenda = :agendaId");
+        Query query = entityManager.createNativeQuery("SELECT COUNT(v.vote_value) FILTER(WHERE v.vote_value = true) as yes," +
+                " COUNT(v.vote_value) FILTER(WHERE v.vote_value = false) as no," +
+                " COUNT(v.vote_value) as total" +
+                " FROM vote v" +
+                " WHERE v.vote_agenda = ?1 ");
 
-        query.setParameter("agendaId", agendaId);
+        query.setParameter(1, agendaId);
         return (VoteResultOutput) query.getSingleResult();
     }
 }
