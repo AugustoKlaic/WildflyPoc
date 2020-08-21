@@ -18,7 +18,7 @@ public class VoteResource {
     private final SessionService sessionService = new SessionService();
 
     @GET
-    @Path("{id}")
+    @Path("/{id}")
     public Response getVoteResults(@PathParam("id") String id) {
         return Response.status(Response.Status.OK).entity(voteService.getResults(UUID.fromString(id))).build();
     }
