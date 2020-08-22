@@ -5,6 +5,7 @@ import wildflyRest.dto.output.VoteResultOutput;
 import wildflyRest.entity.VoteEntity;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.UUID;
 
 public class VoteService {
@@ -17,6 +18,12 @@ public class VoteService {
     }
 
     public VoteResultOutput getResults(UUID agendaId) {
-        return voteDao.votingResult(agendaId);
+        List<VoteEntity> votes = voteDao.votingResult(agendaId);
+
+        long yes = votes.stream().filter(VoteEntity::getVoteValue).count();
+        long no = votes.stream().filter(vote -> !vote.getVoteValue()).count();
+        long total = yes + no;
+
+        return new VoteResultOutput(yes, no, total);
     }
 }

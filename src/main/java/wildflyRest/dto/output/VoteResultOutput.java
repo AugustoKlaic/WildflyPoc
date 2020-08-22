@@ -2,11 +2,11 @@ package wildflyRest.dto.output;
 
 public class VoteResultOutput {
 
-    private Integer yes;
-    private Integer no;
-    private Integer total;
+    private long yes;
+    private long no;
+    private long total;
 
-    public VoteResultOutput(Integer yes, Integer no, Integer total) {
+    public VoteResultOutput(long yes, long no, long total) {
         this();
         this.yes = yes;
         this.no = no;
@@ -16,27 +16,27 @@ public class VoteResultOutput {
     public VoteResultOutput() {
     }
 
-    public Integer getYes() {
+    public long getYes() {
         return yes;
     }
 
-    public void setYes(Integer yes) {
+    public void setYes(long yes) {
         this.yes = yes;
     }
 
-    public Integer getNo() {
+    public long getNo() {
         return no;
     }
 
-    public void setNo(Integer no) {
+    public void setNo(long no) {
         this.no = no;
     }
 
-    public Integer getTotal() {
+    public long getTotal() {
         return total;
     }
 
-    public void setTotal(Integer total) {
+    public void setTotal(long total) {
         this.total = total;
     }
 }
