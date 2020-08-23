@@ -3,6 +3,7 @@ package wildflyRest.service;
 import wildflyRest.dao.VoteDao;
 import wildflyRest.dto.output.VoteResultOutput;
 import wildflyRest.entity.VoteEntity;
+import wildflyRest.service.cpfValidator.CpfValidatorService;
 
 import javax.transaction.Transactional;
 import java.util.List;
