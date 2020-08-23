@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class SessionService {
 
-    private SessionDao sessionDao = new SessionDao();
+    private final SessionDao sessionDao = new SessionDao();
 
     @Transactional
     public void insertSession(SessionEntity session) {

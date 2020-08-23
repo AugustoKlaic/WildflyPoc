@@ -13,10 +13,10 @@ import static javax.persistence.Persistence.createEntityManagerFactory;
 
 public class SessionDao {
 
-    private EntityManagerFactory entityManagerFactory;
+    private final EntityManagerFactory entityManagerFactory;
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     public SessionDao() {
         entityManagerFactory = createEntityManagerFactory("Wildfly-POC");

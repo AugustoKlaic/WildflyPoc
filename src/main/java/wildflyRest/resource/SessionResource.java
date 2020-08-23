@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_JSON)
 public class SessionResource {
 
-    private SessionService sessionService = new SessionService();
+    private final SessionService sessionService = new SessionService();
 
     @POST
     @Path("/new")
