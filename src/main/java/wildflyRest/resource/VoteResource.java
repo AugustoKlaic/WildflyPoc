@@ -33,5 +33,4 @@ public class VoteResource {
             return Response.status(Response.Status.OK).build();
         }
     }
-
 }

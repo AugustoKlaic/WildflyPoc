@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public class VoteService {
 
-    private VoteDao voteDao = new VoteDao();
+    private final VoteDao voteDao = new VoteDao();
 
     @Transactional
     public void vote(VoteEntity voteEntity) {

@@ -13,8 +13,8 @@ import static javax.persistence.Persistence.createEntityManagerFactory;
 
 public class VoteDao {
 
-    private EntityManagerFactory entityManagerFactory;
-    private EntityManager entityManager;
+    private final EntityManagerFactory entityManagerFactory;
+    private final EntityManager entityManager;
 
     public VoteDao() {
         entityManagerFactory = createEntityManagerFactory("Wildfly-POC");
