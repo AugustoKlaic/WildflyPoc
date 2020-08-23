@@ -5,10 +5,10 @@
     <!-- Define persistence unit -->
     <persistence-unit name="Wildfly-POC">
 
-        <class>wildflyRest.entity.AssociateEntity</class>
-        <class>wildflyRest.entity.AgendaEntity</class>
-        <class>wildflyRest.entity.VoteEntity</class>
-        <class>wildflyRest.entity.SessionEntity</class>
+        <class>wildflyRest.associate.AssociateEntity</class>
+        <class>wildflyRest.agenda.AgendaEntity</class>
+        <class>wildflyRest.vote.VoteEntity</class>
+        <class>wildflyRest.session.SessionEntity</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> <!-- DB Driver -->
