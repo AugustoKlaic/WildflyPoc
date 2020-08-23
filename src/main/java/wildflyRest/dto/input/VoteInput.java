@@ -4,14 +4,14 @@ import java.util.UUID;
 
 public class VoteInput {
 
-    private UUID associateId;
+    private String associateCpf;
     private UUID agendaId;
     private Boolean vote;
     private UUID sessionId;
 
-    public VoteInput(UUID associateId, UUID agendaId, Boolean vote, UUID sessionId) {
+    public VoteInput(String associateCpf, UUID agendaId, Boolean vote, UUID sessionId) {
         this();
-        this.associateId = associateId;
+        this.associateCpf = associateCpf;
         this.agendaId = agendaId;
         this.vote = vote;
         this.sessionId = sessionId;
@@ -20,12 +20,12 @@ public class VoteInput {
     public VoteInput() {
     }
 
-    public UUID getAssociateId() {
-        return associateId;
+    public String getAssociateCpf() {
+        return associateCpf;
     }
 
-    public void setAssociateId(UUID associateId) {
-        this.associateId = associateId;
+    public void setAssociateCpf(String associateCpf) {
+        this.associateCpf = associateCpf;
     }
 
     public UUID getAgendaId() {

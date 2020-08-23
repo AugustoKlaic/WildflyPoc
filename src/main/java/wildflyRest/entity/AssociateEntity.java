@@ -8,10 +8,6 @@ import java.util.UUID;
 public class AssociateEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "associate_id")
-    private UUID id;
-
     @Column(name = "associate_cpf", unique = true, nullable = false)
     private String cpf;
 
@@ -19,14 +15,6 @@ public class AssociateEntity {
     private String name;
 
     public AssociateEntity() {
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public String getCpf() {

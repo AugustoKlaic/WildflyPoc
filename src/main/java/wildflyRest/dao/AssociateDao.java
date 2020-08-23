@@ -7,14 +7,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.UUID;
 
 import static javax.persistence.Persistence.createEntityManagerFactory;
 
 public class AssociateDao {
 
-    private EntityManagerFactory entityManagerFactory;
-    private EntityManager entityManager;
+    private final EntityManagerFactory entityManagerFactory;
+    private final EntityManager entityManager;
 
     public AssociateDao() {
         entityManagerFactory = createEntityManagerFactory("Wildfly-POC");
@@ -26,17 +25,17 @@ public class AssociateDao {
         return (List<AssociateEntity>) query.getResultList();
     }
 
-    public AssociateEntity getAssociate(UUID id) {
-        Query query = entityManager.createQuery("SELECT a from AssociateEntity a WHERE a.id = :id");
-        query.setParameter("id", id);
+    public AssociateEntity getAssociate(String cpf) {
+        Query query = entityManager.createQuery("SELECT a from AssociateEntity a WHERE a.cpf = :cpf");
+        query.setParameter("cpf", cpf);
         return (AssociateEntity) query.getSingleResult();
     }
 
     @Transactional
-    public UUID insertAssociate(AssociateEntity associate) {
+    public String insertAssociate(AssociateEntity associate) {
         entityManager.getTransaction().begin();
         entityManager.persist(associate);
         entityManager.getTransaction().commit();
-        return associate.getId();
+        return associate.getCpf();
     }
 }

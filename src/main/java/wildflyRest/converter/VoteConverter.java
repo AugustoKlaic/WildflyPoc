@@ -12,7 +12,7 @@ public class VoteConverter {
         final VoteEntity voteEntity = new VoteEntity();
 
         voteEntity.setVoteAgenda(voteInput.getAgendaId());
-        voteEntity.setVoteAssociate(voteInput.getAssociateId());
+        voteEntity.setVoteAssociate(voteInput.getAssociateCpf());
         voteEntity.setVoteValue(voteInput.getVote());
         voteEntity.setVoteSession(voteInput.getSessionId());
 

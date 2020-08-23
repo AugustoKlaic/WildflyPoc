@@ -10,7 +10,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Path("/associates")
 @Produces(MediaType.APPLICATION_JSON)
@@ -25,21 +24,13 @@ public class AssociateResource {
     }
 
     @GET
-    @Path("/{id}")
-    public Response getAssociate(@PathParam("id") String id) {
-        final UUID associateId;
-
-        try {
-            associateId = UUID.fromString(id);
-        } catch (IllegalArgumentException e) {
-            return Response.status(Response.Status.BAD_REQUEST).entity("{\"code\" : 400, \"message\" : \"Wrong format of UUID\"}").build();
-        }
-
-        final Optional<AssociateEntity> associate = associateService.getAssociate(associateId);
+    @Path("/{cpf}")
+    public Response getAssociate(@PathParam("cpf") String cpf) {
+        final Optional<AssociateEntity> associate = associateService.getAssociate(cpf);
         if (associate.isPresent()) {
             return Response.status(Response.Status.OK).entity(associate.get()).build();
         } else {
-            return Response.status(Response.Status.NOT_FOUND).entity("{\"code\" : 404, \"message\" : \"No Associates found with this Id\"}").build();
+            return Response.status(Response.Status.NOT_FOUND).entity("{\"code\" : 404, \"message\" : \"No Associates found with this CPF.\"}").build();
         }
     }
 
@@ -47,7 +38,7 @@ public class AssociateResource {
     @Path("/new")
     public Response insertAssociate(final AssociateInput associateInput) {
 
-        if (associateInput != null && associateInput.getAsociateCpf() != null && associateInput.getAssociateName() != null) {
+        if (associateInput != null && associateInput.getAssociateCpf() != null && associateInput.getAssociateName() != null) {
             associateService.insertAssociate(AssociateConverter.convertInputToEntity(associateInput));
             return Response.status(Response.Status.CREATED).build();
         } else {

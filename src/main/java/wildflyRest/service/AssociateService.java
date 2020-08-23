@@ -16,7 +16,7 @@ public class AssociateService {
         return associateDao.getAllAssociates();
     }
 
-    public Optional<AssociateEntity> getAssociate(UUID associateId) {
+    public Optional<AssociateEntity> getAssociate(String associateId) {
         if(associateId != null){
             return Optional.of(associateDao.getAssociate(associateId));
         } else {
