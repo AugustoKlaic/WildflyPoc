@@ -16,7 +16,7 @@ import java.util.UUID;
 @Produces(MediaType.APPLICATION_JSON)
 public class AssociateResource {
 
-    private AssociateService associateService = new AssociateService();
+    private final AssociateService associateService = new AssociateService();
 
     @GET
     public Response getAllAssociates() {

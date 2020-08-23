@@ -26,7 +26,7 @@ public class AssociateService {
 
     @Transactional
     public void insertAssociate(AssociateEntity associateEntity){
-        if(associateEntity != null && associateEntity.getCpf() != null && associateEntity.getName() != null && associateEntity.getId() != null){
+        if(associateEntity != null && associateEntity.getCpf() != null && associateEntity.getName() != null){
             associateDao.insertAssociate(associateEntity);
         }
     }
