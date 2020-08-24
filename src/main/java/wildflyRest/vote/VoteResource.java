@@ -30,7 +30,7 @@ public class VoteResource {
     @Path("/vote")
     public Response vote(final VoteInput voteInput) {
         try {
-            String status = cpfValidatorService.isAbleToVote("35975532060").getCpfStatus();
+            String status = cpfValidatorService.isAbleToVote(voteInput.getAssociateCpf()).getCpfStatus();
             if (status.equals(UNABLE_TO_VOTE)) {
                 return Response.status(Response.Status.UNAUTHORIZED).entity("{\"code\" : 401, \"message\" : \"CPF unable to vote.\"}").build();
             }
