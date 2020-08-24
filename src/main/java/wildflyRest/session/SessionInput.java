@@ -7,12 +7,12 @@ public class SessionInput {
 
     private UUID sessionAgenda;
     private Integer sessionDuration;
-    private LocalDateTime sessionCreateTime;
+    private String sessionCreateTime;
 
     public SessionInput() {
     }
 
-    public SessionInput(UUID sessionAgenda, Integer sessionDuration, LocalDateTime sessionCreateTime) {
+    public SessionInput(UUID sessionAgenda, Integer sessionDuration, String sessionCreateTime) {
         this();
         this.sessionAgenda = sessionAgenda;
         this.sessionDuration = sessionDuration;
@@ -35,11 +35,11 @@ public class SessionInput {
         this.sessionDuration = sessionDuration;
     }
 
-    public LocalDateTime getSessionCreateTime() {
+    public String getSessionCreateTime() {
         return sessionCreateTime;
     }
 
-    public void setSessionCreateTime(LocalDateTime sessionCreateTime) {
+    public void setSessionCreateTime(String sessionCreateTime) {
         this.sessionCreateTime = sessionCreateTime;
     }
 }
