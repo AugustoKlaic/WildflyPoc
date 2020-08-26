@@ -1,7 +1,7 @@
 version: '3'
 services:
   voter-db:
-    build: .
+    build: ""
 
   rabbit-mq:
     image: rabbitmq:3-management
