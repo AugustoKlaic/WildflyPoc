@@ -1,10 +1,10 @@
 version: '3'
 services:
   voter-db:
-    build: ""
+    build: postgres/.
 
   rabbit-mq:
-    image: rabbitmq:3-management
+    build: rabbitMq/.
     ports:
       - "15672:15672"
       - "5672:5672"

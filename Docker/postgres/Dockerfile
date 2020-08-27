@@ -12,10 +12,10 @@ RUN apt-get install -y gnupg2
 RUN mkdir dbFiles/
 
 #copy files from the system to the container
-COPY databaseFiles/associate.sql dbFiles/
-COPY databaseFiles/agenda.sql dbFiles/
-COPY databaseFiles/session.sql dbFiles/
-COPY databaseFiles/vote.sql dbFiles/
+COPY databaseFiles dbFiles/
+COPY databaseFiles dbFiles/
+COPY databaseFiles dbFiles/
+COPY databaseFiles dbFiles/
 
 #get all license key to get postgres
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
