@@ -25,4 +25,7 @@ dependencies {
 
     //needed for JSON object mapping
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.2'
+
+    //needed for queue management RabbitMQ
+    compile group: 'com.rabbitmq', name: 'amqp-client', version: '5.9.0'
 }
