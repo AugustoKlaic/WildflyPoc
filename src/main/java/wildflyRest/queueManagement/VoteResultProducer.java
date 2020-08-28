@@ -11,6 +11,7 @@ import java.util.concurrent.TimeoutException;
 public class VoteResultProducer {
 
     private static final String QUEUE_NAME = "voteResultQueue";
+    private static final String EXCHANGE_NAME = "voteResultExchange";
 
     public void sendResultToQueue() {
         ConnectionFactory factory = new ConnectionFactory();
@@ -20,9 +21,8 @@ public class VoteResultProducer {
         factory.setPassword("v0t3r");
         try (Connection connection = factory.newConnection();
              Channel channel = connection.createChannel()) {
-            channel.queueDeclare(QUEUE_NAME, true, false, false, null);
             String message = "Hello World!";
-            channel.basicPublish("", QUEUE_NAME, null, message.getBytes(StandardCharsets.UTF_8));
+            channel.basicPublish(EXCHANGE_NAME, QUEUE_NAME, null, message.getBytes(StandardCharsets.UTF_8));
         } catch (TimeoutException | IOException e) {
             e.printStackTrace();
         }
