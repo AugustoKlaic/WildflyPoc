@@ -19,7 +19,7 @@ public class VoteResultProducer {
     private static final String USER = "voter";
     private static final String PASSWORD = "v0t3r";
 
-    ObjectMapper objectMapper = new ObjectMapper();
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     public void sendResultToQueue(VoteResultOutput voteResultOutput) {
         ConnectionFactory factory = new ConnectionFactory();
