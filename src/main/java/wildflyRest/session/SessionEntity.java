@@ -21,11 +21,13 @@ public class SessionEntity {
     private UUID sessionAgenda;
 
     @Column(name = "session_duration")
-    @ColumnDefault("1")
-    private Integer sessionDuration;
+    private LocalDateTime sessionDuration;
 
     @Column(name = "session_creation_time")
     private LocalDateTime sessionCreateTime;
+
+    @Column(name = "session_status")
+    private Boolean status;
 
     public SessionEntity() {
     }
@@ -46,11 +48,11 @@ public class SessionEntity {
         this.sessionAgenda = sessionAgenda;
     }
 
-    public Integer getSessionDuration() {
+    public LocalDateTime getSessionDuration() {
         return sessionDuration;
     }
 
-    public void setSessionDuration(Integer sessionDuration) {
+    public void setSessionDuration(LocalDateTime sessionDuration) {
         this.sessionDuration = sessionDuration;
     }
 
@@ -60,5 +62,13 @@ public class SessionEntity {
 
     public void setSessionCreateTime(LocalDateTime sessionCreateTime) {
         this.sessionCreateTime = sessionCreateTime;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }

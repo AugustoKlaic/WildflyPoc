@@ -9,7 +9,13 @@ public class SessionConverter {
 
         sessionEntity.setSessionAgenda(session.getSessionAgenda());
         sessionEntity.setSessionCreateTime(LocalDateTime.parse(session.getSessionCreateTime()));
-        sessionEntity.setSessionDuration(session.getSessionDuration());
+        if(session.getSessionDuration() == null){
+            sessionEntity.setSessionDuration(null);
+        }else{
+
+            sessionEntity.setSessionDuration(LocalDateTime.parse(session.getSessionDuration()));
+        }
+        sessionEntity.setStatus(true);
 
         return sessionEntity;
     }

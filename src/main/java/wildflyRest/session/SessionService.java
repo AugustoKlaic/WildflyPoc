@@ -20,13 +20,13 @@ public class SessionService {
     }
 
     public Boolean isSessionClosed(UUID sessionId) {
-        final SessionEntity session = getSession(sessionId);
-        final LocalDateTime startTime = session.getSessionCreateTime();
+//        final SessionEntity session = getSession(sessionId);
+//        final LocalDateTime startTime = session.getSessionCreateTime();
 
-        if (LocalDateTime.now().isAfter(startTime.plusMinutes(session.getSessionDuration()))) {
-            return true;
-        } else {
+//        if (LocalDateTime.now().isAfter(startTime.plusMinutes(session.getSessionDuration()))) {
+//            return true;
+//        } else {
             return false;
-        }
+//        }
     }
 }

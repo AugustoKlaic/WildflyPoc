@@ -1,18 +1,17 @@
 package wildflyRest.session;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class SessionInput {
 
     private UUID sessionAgenda;
-    private Integer sessionDuration;
+    private String sessionDuration;
     private String sessionCreateTime;
 
     public SessionInput() {
     }
 
-    public SessionInput(UUID sessionAgenda, Integer sessionDuration, String sessionCreateTime) {
+    public SessionInput(UUID sessionAgenda, String sessionDuration, String sessionCreateTime) {
         this();
         this.sessionAgenda = sessionAgenda;
         this.sessionDuration = sessionDuration;
@@ -27,11 +26,11 @@ public class SessionInput {
         this.sessionAgenda = sessionAgenda;
     }
 
-    public Integer getSessionDuration() {
+    public String getSessionDuration() {
         return sessionDuration;
     }
 
-    public void setSessionDuration(Integer sessionDuration) {
+    public void setSessionDuration(String sessionDuration) {
         this.sessionDuration = sessionDuration;
     }
 
