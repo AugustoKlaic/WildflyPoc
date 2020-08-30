@@ -1,16 +1,24 @@
 package wildflyRest.session;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("/sessions")
 @Produces(MediaType.APPLICATION_JSON)
 public class SessionResource {
 
     private final SessionService sessionService = new SessionService();
+
+    @GET
+    public Response getAllSession(){
+        final List<SessionEntity> sessions = sessionService.getAllSessions();
+        return Response.status(Response.Status.OK).entity(sessions).build();
+    }
 
     @POST
     @Path("/new")

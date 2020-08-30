@@ -1,7 +1,7 @@
 package wildflyRest.session;
 
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 public class SessionService {
@@ -15,18 +15,15 @@ public class SessionService {
         }
     }
 
+    public List<SessionEntity> getAllSessions() {
+        return sessionDao.getAllSessions();
+    }
+
     public SessionEntity getSession(UUID sessionId) {
         return sessionDao.getSession(sessionId);
     }
 
     public Boolean isSessionClosed(UUID sessionId) {
-//        final SessionEntity session = getSession(sessionId);
-//        final LocalDateTime startTime = session.getSessionCreateTime();
-
-//        if (LocalDateTime.now().isAfter(startTime.plusMinutes(session.getSessionDuration()))) {
-//            return true;
-//        } else {
-            return false;
-//        }
+        return false;
     }
 }

@@ -5,6 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.UUID;
 
 import static javax.persistence.Persistence.createEntityManagerFactory;
@@ -33,5 +34,10 @@ public class SessionDao {
         Query query = entityManager.createQuery("SELECT s from SessionEntity s WHERE s.id = :id");
         query.setParameter("id", id);
         return (SessionEntity) query.getSingleResult();
+    }
+
+    public List<SessionEntity> getAllSessions() {
+        Query query = entityManager.createQuery("SELECT s from SessionEntity s");
+        return (List<SessionEntity>) query.getResultList();
     }
 }
