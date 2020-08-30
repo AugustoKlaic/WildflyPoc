@@ -2,7 +2,6 @@ package wildflyRest.vote;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import wildflyRest.cpfValidator.CpfValidatorService;
-import wildflyRest.session.SessionService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -16,7 +15,6 @@ public class VoteResource {
     private static final String UNABLE_TO_VOTE = "UNABLE_TO_VOTE";
 
     private final VoteService voteService = new VoteService();
-    private final SessionService sessionService = new SessionService();
     private final CpfValidatorService cpfValidatorService = new CpfValidatorService();
 
 
@@ -34,15 +32,12 @@ public class VoteResource {
             if (status.equals(UNABLE_TO_VOTE)) {
                 return Response.status(Response.Status.UNAUTHORIZED).entity("{\"code\" : 401, \"message\" : \"CPF unable to vote.\"}").build();
             }
-        } catch (JsonProcessingException e) {
-            return Response.status(Response.Status.NOT_FOUND).entity("{\"code\" : 404, \"message\" : \"Invalid CPF.\"}").build();
-        }
-
-        if (sessionService.isSessionClosed(voteInput.getSessionId())) {
-            return Response.status(Response.Status.UNAUTHORIZED).entity("{\"code\" : 401, \"message\" : \"Voting Session already closed.\"}").build();
-        } else {
             voteService.vote(VoteConverter.convertToEntity(voteInput));
             return Response.status(Response.Status.OK).build();
+        } catch (JsonProcessingException e) {
+            return Response.status(Response.Status.NOT_FOUND).entity("{\"code\" : 404, \"message\" : \"Invalid CPF.\"}").build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity("{\"code\" : 400, \"message\" : \"Session is closed.\"}").build();
         }
     }
 }

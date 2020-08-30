@@ -24,6 +24,11 @@ public class SessionService {
         return sessionDao.getSession(sessionId);
     }
 
+    @Transactional
+    public void closeSession(UUID agendaId){
+        sessionDao.closeSession(agendaId);
+    }
+
     public Boolean isSessionClosed(UUID sessionId) {
         final SessionEntity session = getSession(sessionId);
         final LocalDateTime actualTime = LocalDateTime.now();

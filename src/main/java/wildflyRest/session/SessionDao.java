@@ -30,6 +30,13 @@ public class SessionDao {
         return session.getId();
     }
 
+    @Transactional
+    public void closeSession(UUID agendaId) {
+        Query query = entityManager.createQuery("UPDATE SessionEntity s SET s.status = false WHERE s.sessionAgenda = :id");
+        query.setParameter("id", agendaId);
+        query.executeUpdate();
+    }
+
     public SessionEntity getSession(UUID id) {
         Query query = entityManager.createQuery("SELECT s from SessionEntity s WHERE s.id = :id");
         query.setParameter("id", id);
