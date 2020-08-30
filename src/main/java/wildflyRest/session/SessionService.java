@@ -1,6 +1,7 @@
 package wildflyRest.session;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,6 +25,13 @@ public class SessionService {
     }
 
     public Boolean isSessionClosed(UUID sessionId) {
-        return false;
+        final SessionEntity session = getSession(sessionId);
+        final LocalDateTime actualTime = LocalDateTime.now();
+
+        if(!session.getStatus()) {
+            return true;
+        } else if (actualTime.isAfter(session.getSessionDuration())){
+            return true;
+        } else return false;
     }
 }
