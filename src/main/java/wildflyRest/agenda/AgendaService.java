@@ -2,7 +2,6 @@ package wildflyRest.agenda;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public class AgendaService {
@@ -13,18 +12,10 @@ public class AgendaService {
         return agendaDao.getAllAgendas();
     }
 
-    public Optional<AgendaEntity> getAgenda(UUID agendaId) {
-        if (agendaId != null) {
-            return Optional.of(agendaDao.getAgenda(agendaId));
-        } else {
-            return Optional.empty();
-        }
-    }
-
     @Transactional
-    public void insertAgenda(AgendaEntity agendaEntity) {
+    public UUID insertAgenda(AgendaEntity agendaEntity) {
         if (agendaEntity != null && agendaEntity.getName() != null) {
-            agendaDao.insertAgenda(agendaEntity);
-        }
+            return agendaDao.insertAgenda(agendaEntity);
+        } else return null;
     }
 }

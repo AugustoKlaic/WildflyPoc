@@ -4,7 +4,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Path("/agendas")
@@ -19,34 +18,15 @@ public class AgendaResource {
         return Response.status(Response.Status.OK).entity(agendas).build();
     }
 
-    @GET
-    @Path("/{id}")
-    public Response getAgenda(@PathParam("id") String id) {
-        final UUID agendaId;
-
-        try {
-            agendaId = UUID.fromString(id);
-        } catch (IllegalArgumentException e) {
-            return Response.status(Response.Status.BAD_REQUEST).entity("{\"code\" : 400, \"message\" : \"Wrong format of UUID\"}").build();
-        }
-
-        final Optional<AgendaEntity> agenda = agendaService.getAgenda(agendaId);
-        if (agenda.isPresent()) {
-            return Response.status(Response.Status.OK).entity(agenda.get()).build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).entity("{\"code\" : 404, \"message\" : \"No Agendas found with this Id\"}").build();
-        }
-    }
-
     @POST
     @Path("/new")
     public Response insertAgenda(AgendaInput agendaInput) {
         if (agendaInput != null && agendaInput.getName() != null) {
-            agendaService.insertAgenda(AgendaConverter.convertInputToEntity(agendaInput));
-            return Response.status(Response.Status.CREATED).build();
+            final UUID agendaId = agendaService.insertAgenda(AgendaConverter.convertInputToEntity(agendaInput));
+            return Response.status(Response.Status.CREATED).entity(agendaId).build();
         } else {
-            return Response.status(Response.Status.CONFLICT)
-                    .entity("{\"code\" : 409, \"message\" : \"Could not create this agenda, missing information.\"}").build();
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("{\"code\" : 400, \"message\" : \"Could not create this agenda, missing information.\"}").build();
         }
     }
 }

@@ -12,10 +12,10 @@ import static javax.persistence.Persistence.createEntityManagerFactory;
 
 public class AgendaDao {
 
-    private EntityManagerFactory entityManagerFactory;
+    private final EntityManagerFactory entityManagerFactory;
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     public AgendaDao() {
         entityManagerFactory = createEntityManagerFactory("Wildfly-POC");
@@ -25,12 +25,6 @@ public class AgendaDao {
     public List<AgendaEntity> getAllAgendas() {
         Query query = entityManager.createQuery("SELECT a FROM AgendaEntity a");
         return (List<AgendaEntity>) query.getResultList();
-    }
-
-    public AgendaEntity getAgenda(UUID agendaId) {
-        Query query = entityManager.createQuery("SELECT a from AgendaEntity a WHERE a.id = :agendaId");
-        query.setParameter("agendaId", agendaId);
-        return (AgendaEntity) query.getSingleResult();
     }
 
     @Transactional
