@@ -10,10 +10,10 @@ public class SessionService {
     private final SessionDao sessionDao = new SessionDao();
 
     @Transactional
-    public void insertSession(SessionEntity session) {
+    public UUID insertSession(SessionEntity session) {
         if (session.getSessionAgenda() != null && session.getSessionCreateTime() != null) {
-            sessionDao.insertSession(session);
-        }
+            return sessionDao.insertSession(session);
+        } else return null;
     }
 
     public List<SessionEntity> getAllSessions() {

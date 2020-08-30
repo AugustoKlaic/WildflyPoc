@@ -7,6 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.UUID;
 
 @Path("/sessions")
 @Produces(MediaType.APPLICATION_JSON)
@@ -24,8 +25,8 @@ public class SessionResource {
     @Path("/new")
     public Response createSession(SessionInput session) {
         if (session.getSessionAgenda() != null && session.getSessionCreateTime() != null) {
-            sessionService.insertSession(SessionConverter.convertInputToEntity(session));
-            return Response.status(Response.Status.CREATED).build();
+            final UUID sessionId = sessionService.insertSession(SessionConverter.convertInputToEntity(session));
+            return Response.status(Response.Status.CREATED).entity(sessionId).build();
         } else {
             return Response.status(Response.Status.CONFLICT)
                     .entity("{\"code\" : 409, \"message\" : \"Could not create this session, missing information.\"}").build();
