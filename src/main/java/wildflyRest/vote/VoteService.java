@@ -1,5 +1,6 @@
 package wildflyRest.vote;
 
+import wildflyRest.queueManagement.VoteResultProducer;
 import wildflyRest.session.SessionService;
 
 import javax.transaction.Transactional;
@@ -10,6 +11,7 @@ public class VoteService {
 
     private final VoteDao voteDao = new VoteDao();
     private final SessionService sessionService = new SessionService();
+    private final VoteResultProducer voteResultProducer = new VoteResultProducer();
 
     @Transactional
     public void vote(VoteEntity voteEntity) throws Exception {
@@ -27,7 +29,10 @@ public class VoteService {
         long no = votes.stream().filter(vote -> !vote.getVoteValue()).count();
         long total = yes + no;
 
+        final VoteResultOutput voteResultOutput = new VoteResultOutput(yes, no, total);;
+
         sessionService.closeSession(agendaId);
-        return new VoteResultOutput(yes, no, total);
+        voteResultProducer.sendResultToQueue(voteResultOutput);
+        return voteResultOutput;
     }
 }
