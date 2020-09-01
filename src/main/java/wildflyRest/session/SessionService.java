@@ -36,6 +36,7 @@ public class SessionService {
         if(!session.getStatus()) {
             return true;
         } else if (actualTime.isAfter(session.getSessionDuration())){
+            closeSession(session.getSessionAgenda());
             return true;
         } else return false;
     }
