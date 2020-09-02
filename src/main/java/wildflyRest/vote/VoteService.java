@@ -1,6 +1,7 @@
 package wildflyRest.vote;
 
 import wildflyRest.queueManagement.VoteResultProducer;
+import wildflyRest.session.SessionClosedException;
 import wildflyRest.session.SessionService;
 
 import javax.transaction.Transactional;
@@ -14,9 +15,9 @@ public class VoteService {
     private final VoteResultProducer voteResultProducer = new VoteResultProducer();
 
     @Transactional
-    public void vote(VoteEntity voteEntity) throws Exception {
+    public void vote(VoteEntity voteEntity) throws SessionClosedException {
         if (sessionService.isSessionClosed(voteEntity.getVoteSession())) {
-            throw new Exception();
+            throw new SessionClosedException("Session is already closed.");
         } else {
             voteDao.vote(voteEntity);
         }

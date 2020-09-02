@@ -1,8 +1,11 @@
 package wildflyRest.vote;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.hibernate.exception.ConstraintViolationException;
 import wildflyRest.cpfValidator.CpfValidatorService;
+import wildflyRest.session.SessionClosedException;
 
+import javax.persistence.RollbackException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -36,8 +39,10 @@ public class VoteResource {
             return Response.status(Response.Status.OK).build();
         } catch (JsonProcessingException e) {
             return Response.status(Response.Status.NOT_FOUND).entity("{\"code\" : 404, \"message\" : \"Invalid CPF.\"}").build();
-        } catch (Exception e) {
-            return Response.status(Response.Status.BAD_REQUEST).entity("{\"code\" : 400, \"message\" : \"Session is closed.\"}").build();
+        } catch (SessionClosedException e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity("{\"code\" : 400, \"message\" : "+ e.getMessage() +"}").build();
+        } catch (RollbackException e) {
+            return Response.status(Response.Status.CONFLICT).entity("{\"code\" : 409, \"message\" : \"Associate already voted in this agenda.\"}").build();
         }
     }
 }
