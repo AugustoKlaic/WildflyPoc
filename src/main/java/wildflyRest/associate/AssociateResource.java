@@ -1,5 +1,6 @@
 package wildflyRest.associate;
 
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -12,7 +13,12 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class AssociateResource {
 
-    private final AssociateService associateService = new AssociateService();
+    private final AssociateService associateService;
+
+    @Inject
+    public AssociateResource(AssociateService associateService) {
+        this.associateService = associateService;
+    }
 
     @GET
     public Response getAllAssociates() {

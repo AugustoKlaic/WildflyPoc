@@ -1,11 +1,17 @@
 package wildflyRest.associate;
 
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.List;
 
 public class AssociateService {
 
-    private final AssociateDao associateDao = new AssociateDao();
+    private final AssociateDao associateDao;
+
+    @Inject
+    public AssociateService(AssociateDao associateDao) {
+        this.associateDao = associateDao;
+    }
 
     public List<AssociateEntity> getAllAssociates() {
         return associateDao.getAllAssociates();

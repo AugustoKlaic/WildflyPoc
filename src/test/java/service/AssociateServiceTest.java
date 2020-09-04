@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import wildflyRest.associate.AssociateDao;
 import wildflyRest.associate.AssociateEntity;
@@ -12,6 +11,7 @@ import wildflyRest.associate.AssociateService;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.when;
 
 public class AssociateServiceTest {
 
@@ -29,13 +29,13 @@ public class AssociateServiceTest {
     @Test
     public void testIfInsertAssociate() {
         final AssociateEntity associateEntity = createAssociate();
-        Mockito.when(associateDao.insertAssociate(any(AssociateEntity.class))).thenReturn(associateEntity.getCpf());
+        when(associateDao.insertAssociate(any(AssociateEntity.class))).thenReturn(associateEntity.getCpf());
 
-        String cpf = associateService.insertAssociate(associateEntity);
-        assertEquals(cpf, associateEntity.getCpf());
+
+        assertEquals(associateEntity.getCpf(), associateService.insertAssociate(associateEntity));
     }
 
-    public AssociateEntity createAssociate(){
+    private AssociateEntity createAssociate() {
         final AssociateEntity associateEntity = new AssociateEntity();
 
         associateEntity.setCpf("35058318083");
