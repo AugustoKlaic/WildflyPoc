@@ -4,6 +4,7 @@ import wildflyRest.cpfValidator.CpfUnableToVoteException;
 import wildflyRest.cpfValidator.InvalidCpfException;
 import wildflyRest.session.SessionClosedException;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -13,7 +14,12 @@ import java.util.UUID;
 @Produces(MediaType.APPLICATION_JSON)
 public class VoteResource {
 
-    private final VoteService voteService = new VoteService();
+    private final VoteService voteService;
+
+    @Inject
+    public VoteResource(VoteService voteService) {
+        this.voteService = voteService;
+    }
 
     @GET
     @Path("/{id}")

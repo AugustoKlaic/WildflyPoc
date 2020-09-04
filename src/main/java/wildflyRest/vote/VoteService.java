@@ -8,6 +8,7 @@ import wildflyRest.queueManagement.VoteResultProducer;
 import wildflyRest.session.SessionClosedException;
 import wildflyRest.session.SessionService;
 
+import javax.inject.Inject;
 import javax.persistence.RollbackException;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -18,11 +19,16 @@ public class VoteService {
     private static final String ABLE_TO_VOTE = "ABLE_TO_VOTE";
     private static final String UNABLE_TO_VOTE = "UNABLE_TO_VOTE";
 
-    private final VoteDao voteDao = new VoteDao();
-    private final SessionService sessionService = new SessionService();
+    private final VoteDao voteDao;
+    private final SessionService sessionService;
     private final VoteResultProducer voteResultProducer = new VoteResultProducer();
     private final CpfValidatorService cpfValidatorService = new CpfValidatorService();
 
+    @Inject
+    public VoteService(VoteDao voteDao, SessionService sessionService) {
+        this.voteDao = voteDao;
+        this.sessionService = sessionService;
+    }
 
     @Transactional
     public void vote(VoteEntity voteEntity) throws SessionClosedException, UniqueVoteException, InvalidCpfException, CpfUnableToVoteException {

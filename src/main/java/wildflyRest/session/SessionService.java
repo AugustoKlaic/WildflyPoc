@@ -1,5 +1,6 @@
 package wildflyRest.session;
 
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -7,7 +8,12 @@ import java.util.UUID;
 
 public class SessionService {
 
-    private final SessionDao sessionDao = new SessionDao();
+    private final SessionDao sessionDao;
+
+    @Inject
+    public SessionService(SessionDao sessionDao) {
+        this.sessionDao = sessionDao;
+    }
 
     @Transactional
     public UUID insertSession(SessionEntity session) {

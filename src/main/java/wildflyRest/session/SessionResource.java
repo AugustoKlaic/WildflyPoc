@@ -1,5 +1,6 @@
 package wildflyRest.session;
 
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -13,7 +14,12 @@ import java.util.UUID;
 @Produces(MediaType.APPLICATION_JSON)
 public class SessionResource {
 
-    private final SessionService sessionService = new SessionService();
+    private final SessionService sessionService;
+
+    @Inject
+    public SessionResource(SessionService sessionService) {
+        this.sessionService = sessionService;
+    }
 
     @GET
     public Response getAllSession(){

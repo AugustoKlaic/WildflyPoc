@@ -1,5 +1,6 @@
 package wildflyRest.agenda;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -10,7 +11,12 @@ import java.util.UUID;
 @Produces(MediaType.APPLICATION_JSON)
 public class AgendaResource {
 
-    private final AgendaService agendaService = new AgendaService();
+    private final AgendaService agendaService;
+
+    @Inject
+    public AgendaResource(AgendaService agendaService) {
+        this.agendaService = agendaService;
+    }
 
     @GET
     public Response getAllAgendas() {
