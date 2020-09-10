@@ -21,13 +21,15 @@ public class VoteService {
 
     private final VoteDao voteDao;
     private final SessionService sessionService;
-    private final VoteResultProducer voteResultProducer = new VoteResultProducer();
-    private final CpfValidatorService cpfValidatorService = new CpfValidatorService();
+    private final VoteResultProducer voteResultProducer;
+    private final CpfValidatorService cpfValidatorService;
 
     @Inject
-    public VoteService(VoteDao voteDao, SessionService sessionService) {
+    public VoteService(VoteDao voteDao, SessionService sessionService, VoteResultProducer voteResultProducer, CpfValidatorService cpfValidatorService) {
         this.voteDao = voteDao;
         this.sessionService = sessionService;
+        this.voteResultProducer = voteResultProducer;
+        this.cpfValidatorService = cpfValidatorService;
     }
 
     @Transactional
