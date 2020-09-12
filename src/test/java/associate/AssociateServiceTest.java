@@ -1,4 +1,4 @@
-package service.associate;
+package associate;
 
 import org.junit.Before;
 import org.junit.Test;

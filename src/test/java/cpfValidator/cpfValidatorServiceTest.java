@@ -1,4 +1,4 @@
-package service.cpfValidator;
+package cpfValidator;
 
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;

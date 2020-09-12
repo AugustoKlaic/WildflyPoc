@@ -1,4 +1,4 @@
-package service.vote;
+package vote;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.Before;

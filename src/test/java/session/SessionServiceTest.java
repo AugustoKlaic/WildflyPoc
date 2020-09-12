@@ -1,4 +1,4 @@
-package service.session;
+package session;
 
 import org.junit.Before;
 import org.junit.Test;
