@@ -1,14 +1,14 @@
 package service.cpfValidator;
 
-import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
-import wildflyRest.cpfValidator.CpfValidatorService;
 
-import javax.ws.rs.core.Application;
+import com.sun.jersey.test.framework.AppDescriptor;
+import com.sun.jersey.test.framework.JerseyTest;
+import com.sun.jersey.test.framework.WebAppDescriptor;
 
 public class cpfValidatorServiceTest extends JerseyTest {
 
+    private static final String URL = "/users/";
 
     @Test
     public void testCpfValidationCall() {
@@ -16,8 +16,7 @@ public class cpfValidatorServiceTest extends JerseyTest {
     }
 
     @Override
-    protected Application configure() {
-
-        return new ResourceConfig(CpfValidatorService.class);
+    protected AppDescriptor configure() {
+        return new WebAppDescriptor.Builder().build();
     }
 }
