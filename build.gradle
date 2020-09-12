@@ -31,6 +31,7 @@ dependencies {
     compile group: 'com.rabbitmq', name: 'amqp-client', version: '5.9.0'
 
     //needed for test http calls
-    compile group: 'org.glassfish.jersey.test-framework', name: 'jersey-test-framework-core', version: '2.6'
+    compile group: 'org.glassfish.jersey.test-framework', name: 'jersey-test-framework-core', version: '2.13'
+    testCompile group: 'com.sun.jersey.jersey-test-framework', name: 'jersey-test-framework-external', version: '1.19.4'
 
 }
