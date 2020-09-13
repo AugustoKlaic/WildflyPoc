@@ -37,12 +37,4 @@ public class AgendaConverterTest {
 
         return agendaInput;
     }
-
-    private AgendaEntity createAgenda() {
-        final AgendaEntity agendaEntity = new AgendaEntity();
-        agendaEntity.setId(UUID.fromString("dddfd8f6-c45e-41d5-86ef-910ac3ca6cfa"));
-        agendaEntity.setName("Test Agenda");
-
-        return agendaEntity;
-    }
 }
