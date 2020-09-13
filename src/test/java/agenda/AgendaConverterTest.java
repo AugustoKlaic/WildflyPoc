@@ -8,8 +8,6 @@ import wildflyRest.agenda.AgendaConverter;
 import wildflyRest.agenda.AgendaEntity;
 import wildflyRest.agenda.AgendaInput;
 
-import java.util.UUID;
-
 import static org.junit.Assert.assertEquals;
 
 public class AgendaConverterTest {
