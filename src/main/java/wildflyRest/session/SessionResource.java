@@ -15,10 +15,12 @@ import java.util.UUID;
 public class SessionResource {
 
     private final SessionService sessionService;
+    private final SessionConverter sessionConverter;
 
     @Inject
-    public SessionResource(SessionService sessionService) {
+    public SessionResource(SessionService sessionService, SessionConverter sessionConverter) {
         this.sessionService = sessionService;
+        this.sessionConverter = sessionConverter;
     }
 
     @GET
@@ -31,7 +33,7 @@ public class SessionResource {
     @Path("/new")
     public Response createSession(SessionInput session) {
         if (session.getSessionAgenda() != null && session.getSessionCreateTime() != null) {
-            final UUID sessionId = sessionService.insertSession(SessionConverter.convertInputToEntity(session));
+            final UUID sessionId = sessionService.insertSession(sessionConverter.convertInputToEntity(session));
             return Response.status(Response.Status.CREATED).entity(sessionId).build();
         } else {
             return Response.status(Response.Status.CONFLICT)
