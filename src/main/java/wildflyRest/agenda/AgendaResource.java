@@ -12,10 +12,12 @@ import java.util.UUID;
 public class AgendaResource {
 
     private final AgendaService agendaService;
+    private final AgendaConverter agendaConverter;
 
     @Inject
-    public AgendaResource(AgendaService agendaService) {
+    public AgendaResource(AgendaService agendaService, AgendaConverter agendaConverter) {
         this.agendaService = agendaService;
+        this.agendaConverter = agendaConverter;
     }
 
     @GET
@@ -28,7 +30,7 @@ public class AgendaResource {
     @Path("/new")
     public Response insertAgenda(AgendaInput agendaInput) {
         if (agendaInput != null && agendaInput.getName() != null) {
-            final UUID agendaId = agendaService.insertAgenda(AgendaConverter.convertInputToEntity(agendaInput));
+            final UUID agendaId = agendaService.insertAgenda(agendaConverter.convertInputToEntity(agendaInput));
             return Response.status(Response.Status.CREATED).entity(agendaId).build();
         } else {
             return Response.status(Response.Status.BAD_REQUEST)
