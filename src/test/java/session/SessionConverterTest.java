@@ -11,8 +11,7 @@ import wildflyRest.session.SessionInput;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class SessionConverterTest {
 
@@ -34,6 +33,15 @@ public class SessionConverterTest {
         assertEquals(LocalDateTime.parse(sessionInput.getSessionCreateTime()), response.getSessionCreateTime());
         assertEquals(LocalDateTime.parse(sessionInput.getSessionDuration()), response.getSessionDuration());
         assertTrue(response.getStatus());
+    }
+
+    @Test
+    public void testIfDurationIsSetToNull(){
+        SessionInput sessionInput = createSessionInput();
+        sessionInput.setSessionDuration(null);
+        SessionEntity response = sessionConverter.convertInputToEntity(sessionInput);
+
+        assertNull(response.getSessionDuration());
     }
 
     private SessionInput createSessionInput() {
