@@ -5,7 +5,7 @@ import javax.inject.Singleton;
 @Singleton
 public class VoteConverter {
 
-    public static VoteEntity convertToEntity(VoteInput voteInput) {
+    public VoteEntity convertToEntity(VoteInput voteInput) {
         final VoteEntity voteEntity = new VoteEntity();
 
         voteEntity.setVoteAgenda(voteInput.getAgendaId());

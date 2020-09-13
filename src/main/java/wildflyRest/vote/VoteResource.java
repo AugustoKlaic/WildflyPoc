@@ -15,10 +15,12 @@ import java.util.UUID;
 public class VoteResource {
 
     private final VoteService voteService;
+    private final VoteConverter voteConverter;
 
     @Inject
-    public VoteResource(VoteService voteService) {
+    public VoteResource(VoteService voteService, VoteConverter voteConverter) {
         this.voteService = voteService;
+        this.voteConverter = voteConverter;
     }
 
     @GET
@@ -31,7 +33,7 @@ public class VoteResource {
     @Path("/vote")
     public Response vote(final VoteInput voteInput) {
         try {
-            voteService.vote(VoteConverter.convertToEntity(voteInput));
+            voteService.vote(voteConverter.convertToEntity(voteInput));
             return Response.status(Response.Status.OK).build();
         } catch (SessionClosedException | InvalidCpfException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity("{\"code\" : 400, \"message\" : " + e.getMessage() + "}").build();
