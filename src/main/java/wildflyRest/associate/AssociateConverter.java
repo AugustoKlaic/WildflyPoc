@@ -5,7 +5,7 @@ import javax.inject.Singleton;
 @Singleton
 public class AssociateConverter {
 
-    public static AssociateEntity convertInputToEntity(AssociateInput associateInput) {
+    public AssociateEntity convertInputToEntity(AssociateInput associateInput) {
         final AssociateEntity associateEntity = new AssociateEntity();
 
         associateEntity.setCpf(associateInput.getAssociateCpf());

@@ -14,10 +14,12 @@ import java.util.List;
 public class AssociateResource {
 
     private final AssociateService associateService;
+    private final AssociateConverter associateConverter;
 
     @Inject
-    public AssociateResource(AssociateService associateService) {
+    public AssociateResource(AssociateService associateService, AssociateConverter associateConverter) {
         this.associateService = associateService;
+        this.associateConverter = associateConverter;
     }
 
     @GET
@@ -31,7 +33,7 @@ public class AssociateResource {
     public Response insertAssociate(final AssociateInput associateInput) {
 
         if (associateInput != null && associateInput.getAssociateCpf() != null && associateInput.getAssociateName() != null) {
-            final String cpf =  associateService.insertAssociate(AssociateConverter.convertInputToEntity(associateInput));
+            final String cpf =  associateService.insertAssociate(associateConverter.convertInputToEntity(associateInput));
             return Response.status(Response.Status.CREATED).entity(cpf).build();
         } else {
             return Response.status(Response.Status.BAD_REQUEST)
